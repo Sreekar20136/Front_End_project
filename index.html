@@ -1,49 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic-Tac-Toe</title>
-  <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-
-    <div class="Intro"> Tic tac toe </div>
-    <div class="name">
-      By KS Sreekar Datta
-    </br>
-    <p>Roll no:AM.EN.U4AIE20136</p>
-    </div>
-    
-      <div class="board">
-        <div class="board-row">
-          <div class="board-cell"></div>
-          <div class="board-cell"></div>
-          <div class="board-cell"></div>
-        </div>
-        <div class="board-row">
-          <div class="board-cell"></div>
-          <div class="board-cell"></div>
-          <div class="board-cell"></div>
-        </div>
-        <div class="board-row">
-          <div class="board-cell"></div>
-          <div class="board-cell"></div>
-          <div class="board-cell"></div>
-        </div>
-        <div class="result">Player 1 Win!</div>
-      </div>
-      <div class="turn">Player 1</div>
-      <div class="box">
-      <a class="replay" onClick="restartGame()" data-title="Restart"></a>
-      <a class="replay" onClick="undoMove()" data-title="Undo"></a>
-      <a class="replay" onclick="location.href='Aitictactoe.html'" data-title="Ai tictactoe"></a>
-      
-    </div>
-    
-    <script src="script.js"></script>
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+      	font-family: Arial;
+        border: 2px solid black;
+			font-size: 16px;
+			line-height: 1.5;
+			margin-left:200px;
+			padding: 0;
+      width:100%;
+     }
+p {
+			margin-bottom: 1.5em;
+		}
+    h2{font-style:italic}
+		div.first{margin-left: 150px;}
+    div.second{margin-left:100px;}
+    .container-fluid {
+    display: flex;
+    align-items:center;
+    width: 300px;
+  }
+  .container-fluid img
+  {
+    width: 50px;
+    margin-right:160px;}
   
+   
+		@media only screen and (max-width: 576px) {
+			/* Adjust styles for screens up to 768px wide */
+      #carouselExmpleCaptions .carousel-item{
+        object-fit: cover;
+  object-position:center;
+  width:100%;
+  height: 50vh;}
+  p {
+				font-size: 0.6em;
+			}
+      li{font-size: 0.4em;}
+      .navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+    }
+   
+  
+		}
+		@media only screen and (min-width: 577px) and (max-width:768px) {
+			/* Adjust styles for screens up to 480px wide */
+			
+      #carouselExampleCaptions .carousel-item{
+        object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 60vh;
+ 
+		}}p {
+				font-size: 0.8em;
+			}
+      li{font-size: 0.6em;}
+       h1{text-align: center;}
+       .navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;}
+  @media only screen and (min-width: 769px) and (max-width:992px){
+    #carouselExampleCaptions .carousel-item{
+        object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 70vh;}
+ 
+			p {
+				font-size: 1em;
+			}
+      li{font-size: 0.8em;}
+      .navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+    }}
+    
+  
+  @media only screen and (min-width: 993px){
+    #carouselExampleCaptions .carousel-item{
+        object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 70vh;
+margin-left: 50px;}
+  h1 {
+				font-size: 1.5em;
+			}
+			p {
+				font-size: 1.0em;
+			}
+      li{font-size: 1em;}
+      .navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;} 
+  }
+
+  
+  
+
+
+       </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</head>
+
+  
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Profile</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section1">About me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section2">Education</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section3">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section4">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section7">Certificates</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#section5">Hobbies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section6">Places i like to visit</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section8">Contact</a>
+          </li>
+        </ul>
+      </div>
+</div>
+  </nav>
+
+  
+  <div class="p-3 mb-2 bg-info-subtle text-emphasis-info">
+    <div class="container-fluid">
+  
+    <img  src="Images/My photo.png" class="img-fluid"  style="width: 10%;" >
+    <p> A smartworking, dedicated and enthusiastic third year Btech student with good problem solving skills pursuing btech in artificial intelligence. A professional teamplayer, adaptable to any role inthe team. Area of intrests are webdevelopement and machine learning. Ready to learn any skills according to the requirement of company</p>
+
+  
+</div>
+</br>
+<h2>K S Sreekar Datta</h2>
+
+  </br>
+   </br>
+<div class="section two" id="section2">
+<button type="button" class="btn btn-warning col-xs-12 col-md-2">Education</button>
+</br> 
+</br>
+<ol class="list-group list-group-numbered w-25">
+  <li class="list-group-item">Vishwabharathi english medium high school
+  </br>Cgpa-10
+  </li>
+  <li class="list-group-item">Narayana junior College
+  </br> Cgpa=9.7
+  </li>
+  <li class="list-group-item">Amrita vishwa vidya peetham
+  </br> Cgpa=7.77
+  </li>
+</ol>
+</div>
+    
+<div class="section three" id="section3">
+  <br /><button type="button" class="btn btn-warning col-xs-12 col-md-2">Skills</button>
+</br>
+</br>
+  <ul class="list-group w-25">
+    <li class="list-group-item">Python </li>
+    <li class="list-group-item">Java</li>
+    <li class="list-group-item">SQL</li>
+  </ul>
+</div>
+</br>
+<div class="section four" id="section4">
+<span class="border border-success">
+  <button type="button" class="btn btn-warning col-xs-12 col-md-2">Projects</button>
+    </br>
+  </br>
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Intrusion detection system
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body"><p>Developed a Robot which detects intuders, used Raspberry Pi in combination with ROS to design a joystick controlled wheeled Robot. The program is written in python and with the help of rospy library and GPIO. The robot can be navigated using a wireless controller or joystick. </p> </div>
+       </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Image fusion stationary wavelet transform
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body"><p>Fusion of images using stationary wavelet transform. Stationary wavelet transform is the image fusion technique used to find the best output image which includes the important features of the image. Implemented image fusion using Stationary wavelet transform for grayscale images in Matlab.</p></div>
+        </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+         Machine learning from disaster
+        </button>
+      </h2>
+      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body"><p>Built a Machine learning model using Random forest algorithm that predicts which passengers survived the Titanic shipwreck.</p></div>
+        </div>
+    </div>
+  </div>
+</br>
+  <div class="section three" id="section7">
+    <button type="button" class="btn btn-warning col-xs-12 col-md-2">Certificates</button>
+  </br>
+  </br>
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card ">
+          <img class="card-img-top" src="Nv.png" width="100" height="200" alt="">
+  
+          <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              Learnt the basics of deep learning in te workshop conducted by NVIDIA,learnt how to build 
+              deep learning models,had some hands-on work on deep learning models
+             </p>
+  
+              <a href="https://courses.nvidia.com/certificates/57ae4d337b61463a82e393cf90108083/" class="btn btn-outline-primary btn-sm">
+                Certificate  link
+                </a>
+  
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12" >
+              <div class="card">
+                  <img class="card-img-top" src="Dv.png" width="100" height="230" alt="">
+  
+                  <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">
+                         
+                      Learnt basics of backend web development in the bootcamp conducetd by devtown and build a
+                      basic calculator app
+  
+                      </p>
+                        
+                      <a href="https://cert.devtown.in/verify/1oAu1" class="btn btn-outline-primary btn-sm">
+                        Certificate  link
+                      </a>
+            
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12" >
+            <div class="card">
+                <img class="card-img-top" src="Kg.png" width="100" height="250" alt="">
+  
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">
+                       
+                   This certificate was awarded for completing the python course in kaggle
+                    </p>
+                      
+                    <a href="https://www.kaggle.com/learn/certification/sreekardatta/python" class="btn btn-outline-primary btn-sm">
+                        Certificate link
+                    </a>
+          
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </br>
+<div class="section Five" id="section5">
+  <button type="button" class="btn btn-warning col-xs-12 col-md-2">Hobbies</button>
+</br>
+</br>
+<ul class="list-group w-25">
+  <li class="list-group-item">Playing Badminton </li>
+  <li class="list-group-item">Playing Cricket</li>
+  <li class="list-group-item">Travelling</li>
+</ul>
+</div>
+</br>
+<div class="section Six" id="section6">
+<button type="button" class="btn btn-warning col-xs-12 col-md-2">Places i like to visit</button>
+</br>
+</br>
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      
+      <img src="Images/Switzerland.jpg" class="d-block w-100" alt="...">
+    
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Switzerland</h5>
+      
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container-fluid">
+      <img src="Images/Kulu-manali.jpg" class="d-block w-100"   alt="..." >
+    </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Kulu manali</h5>
+        
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container-fluid">
+      <img src="Images/Newyork.jpg" class="d-block w-100" alt="..." >
+    </div>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>NewYork</h5>
+        
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+</br>
+<div class="section Eight" id="section8"></div>
+<button type="button" class="btn btn-warning col-xs-12 col-md-2">Contact</button>
+</br>
+</br>
+<div class="first" style="display: inline-block;"><strong>Phone number</strong>:8309596350</div>
+<div  class="second" style="display: inline-block;"><strong> Email</strong>:sreekardatta2000@gmail.com</div>
+
+</div>
+<div class="Fsd Projects">
+  <a href="">Tic tac toe</a> 
+</div>
+
+
+</div>
+</body>
+
+</html>
