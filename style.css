@@ -99,16 +99,18 @@ font-size:25px;}
 font-style:italic;}
 p{margin-left:30px;}
 .topnav {
-    background-color: #261f1f;
+    background-color:rgb(223, 251, 251);
     overflow: hidden;
     margin-left:-10px;
+    padding-bottom: 5px;
+   
   }
   /* Style the links inside the navigation bar */
   h3{margin-left:30px;}
   .topnav a {
     float:right;
     display: block;
-    color: #f2f2f2;
+    color:black;
     text-align: center;
     margin-right:20px;
     padding: 14px 16px;
@@ -120,7 +122,7 @@ p{margin-left:30px;}
   
   /* Change the color of links on hover */
   .topnav a:hover {
-    background-color: #ddd;
+    background-color:white;
     color: black;
   }
   
@@ -128,8 +130,8 @@ p{margin-left:30px;}
   /* Add an active class to highlight the current page */
   .topnav a.active {
     float:left;
-    background-color: #1399ec;
-    color: white;
+    
+    color:black;
   }
   
   /* Hide the link that should open and close the topnav on small screens */
@@ -138,14 +140,20 @@ p{margin-left:30px;}
 
 div.Content{
 padding-left:10px;
-border:50px solid rgb(200, 235, 70);
+margin:50px;
+box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+padding-bottom:20px;
+
 
 }
 .Intro{
 background-color:rgb(162, 238, 238);
-margin-left:-10px;}
+margin-left:-10px;
+height:350px;}
 .Photo{float:right;
-width:17%}
+width:17%;
+padding-top:30px;
+}
 
 p{font-size:18px;}
 
