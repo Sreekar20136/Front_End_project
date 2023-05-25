@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+body{background-color: rgba(125, 190, 234, 0.8);}
 .box{display:flex;
  justify-content: center;
  align-content:center;
@@ -30,7 +30,7 @@
     border:1px solid black;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: orange;
+    background-color:white;
     opacity:0.7;
 
 }
