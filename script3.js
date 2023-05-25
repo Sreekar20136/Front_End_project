@@ -4,7 +4,7 @@ var options=document.querySelectorAll(".el")
 var submitCaptionbtn=document.querySelector("submitCaption")
 var container=document.getElementById("container")
 var test;
-var curr
+var curr;
 scope.addEventListener("contextmenu",(e)=>{
     e.preventDefault();
     // let events=Array.from(e.target.src)
@@ -49,15 +49,13 @@ contextmenu.addEventListener('click',(event)=>{
         var newImage = increaseBrightness(curr.target, 1.5);
         curr.target.src = newImage.src;
  }
-    if (event.target.id==="e4"){
-        var newImage=reduceResolution(curr.target)
-        // console.log(newImage)
-        curr.target.src=newImage
-    }
+ if (event.target.id === "e4") {
+    reduceResolution(curr.target, function(reducedImage) {
+      curr.target.src = reducedImage.src;
+    });
+  }
     if (event.target.id==="e7"){
-        var newImage= generateQRCodeFromImage(curr.target)
-        // console.log(newImage)
-        curr.target.src=newImage     
+          
     }
 
    })
@@ -66,37 +64,8 @@ scope.addEventListener("click",(e)=>{
         contextmenu.classList.remove("visible")
     }
 },false);
-function generateQRCodeFromImage(target) {
-    // Create a new image element
-    const image = new Image();
+
   
-    // Set the image source to the given URL
-    image.src = target;
-  
-    // Wait for the image to load
-    image.onload = function() {
-      // Create a new canvas element
-      const canvas = document.createElement('canvas');
-      
-      // Set the canvas width and height to the image width and height
-      canvas.width = image.width;
-      canvas.height = image.height;
-      
-      // Draw the image onto the canvas
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(image, 0, 0, image.width, image.height);
-      
-      // Get the data URL of the canvas as a PNG image
-      const dataURL = canvas.toDataURL('image/png');
-      
-      // Generate the QR code from the data URL using qrcode.js
-      const qr = new QRCode(document.createElement('div'));
-      qr.makeCode(dataURL);
-      
-      // Append the QR code to the body
-      document.body.appendChild(qr._el);
-    };
-  }
 function rgbToGrayscale(target) {
     // create a canvas element
     var canvas = document.createElement('canvas');
@@ -139,70 +108,33 @@ function rgbToGrayscale(target) {
     return newImage;
   }
   
-
-function increaseBrightness(target, factor) {
-    // create a canvas element
-    var canvas = document.createElement("canvas");
-    var ctx = canvas.getContext("2d");
+  function reduceResolution(target, callback) {
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
   
-    // set the canvas dimensions to the size of the image
-    canvas.width = target.naturalWidth;
-    canvas.height = target.naturalHeight;
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function() {
+      var width = img.width / 2;
+      var height = img.height / 2;
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+      var reducedImage = new Image();
   
-    // draw the image onto the canvas
-    ctx.drawImage(target, 0, 0);
+      // Set the reduced image dimensions to match the original image
+      reducedImage.width = target.width;
+      reducedImage.height = target.height;
   
-    // get the image data from the canvas
-    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    var data = imageData.data;
+      var tempCanvas = document.createElement('canvas');
+      var tempCtx = tempCanvas.getContext('2d');
+      tempCanvas.width = target.width;
+      tempCanvas.height = target.height;
   
-    // loop through each pixel and increase its brightness
-    for (var i = 0; i < data.length; i += 4) {
-      data[i] *= factor; // red
-      data[i + 1] *= factor; // green
-      data[i + 2] *= factor; // blue
-    }
-  
-    // put the modified image data back onto the canvas
-    ctx.putImageData(imageData, 0, 0);
-  
-    // create a new image object with the modified image data
-    var newImage = new Image();
-    newImage.src = canvas.toDataURL();
-  
-    // return the new image object
-    return newImage;
+      // Draw the reduced image on a temporary canvas to preserve the aspect ratio
+      tempCtx.drawImage(canvas, 0, 0, width, height, 0, 0, target.width, target.height);
+      reducedImage.src = tempCanvas.toDataURL();
+      callback(reducedImage);
+    };
+    img.src = target.src;
   }
-  
-  
-
-function reduceResolution(target, callback){
-    // create a new image object
-var img = new Image();
-
-// set the image source
-img.src=target.src
-img.crossOrigin="anonynomous"
-// wait for the image to load
-  // create a canvas element
-var canvas = document.createElement('canvas');
-var reducedImageData;
-  // set the canvas dimensions to the desired resolution
-  resImage=img.onload = function() {
-      canvas.width = img.width/3;
-      canvas.height = img.height/3;
-
-      var ctx = canvas.getContext('2d');
-
-      ctx.drawImage(img,0,0, canvas.width, canvas.height);
-      
-        // get the reduced resolution image data from the canvas
-        reducedImageData = canvas.toDataURL();
-        // do something with the reduced resolution image data
-        // console.log(reducedImageData);
-        return reducedImageData
-    }();
-    // console
-    return resImage
-    
-}
