@@ -1,6 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    background-color: rgba(127, 236, 100, 0.8);
 }
 
 
@@ -17,7 +18,7 @@ body {
     border:1px solid black;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color:rgb(249, 246, 32);
+    background-color:rgba(59, 197, 228, 0.8);
     opacity:0.8;
     margin-left:35%;
     margin-right:35%;
@@ -29,18 +30,19 @@ body {
   }
 
 #board {
-    width: 350px;
+    width: 400px;
     height: 420px;
-    margin: 0 auto;
+    margin: 2% auto;
     margin-top: 3px;
     display: flex;
     flex-wrap: wrap;
+    gap:10px;
 }
 
 .tile {
     /* Box */
-    border: 2px solid lightgray;
-    border-radius:15px ;
+    border: 2px solid black;
+    border-radius:30% ;
     width: 60px;
     height: 60px;
     margin: 2.5px;
@@ -79,6 +81,7 @@ body {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .key-tile {
@@ -86,14 +89,15 @@ body {
     height: 40px;
     margin: 1px;
     border: 1px solid lightgray;
-    background-color: #6AAA64;
-
+    background-color:rgba(66, 202, 233,0.6);
+border-radius: 75%;
     /* Text */
     font-size: 20px;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .enter-key-tile {
@@ -101,7 +105,7 @@ body {
     height: 40px;
     margin: 1px;
     border: 1px solid lightgray;
-    background-color: #6AAA64;
+    background-color:rgba(66, 202, 233,0.6);
 
     /* Text */
     font-size: 20px;
@@ -110,5 +114,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
+#answer{color:black;
+font-style: italic;}
 
