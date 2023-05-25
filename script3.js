@@ -64,6 +64,50 @@ scope.addEventListener("click",(e)=>{
         contextmenu.classList.remove("visible")
     }
 },false);
+function increaseBrightness(target, factor) {
+  // create a canvas element
+  var canvas = document.createElement('canvas');
+  var ctx = canvas.getContext('2d');
+  
+  // set the canvas dimensions to the size of the image
+  canvas.width = target.naturalWidth;
+  canvas.height = target.naturalHeight;
+  
+  // draw the image onto the canvas
+  ctx.drawImage(target, 0, 0);
+  
+  // get the image data from the canvas
+  var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  var data = imageData.data;
+  
+  // loop through each pixel and increase the brightness
+  for (var i = 0; i < data.length; i += 4) {
+    var red = data[i];
+    var green = data[i + 1];
+    var blue = data[i + 2];
+  
+    // increase the brightness of each color channel
+    red = Math.min(Math.floor(red * factor), 255);
+    green = Math.min(Math.floor(green * factor), 255);
+    blue = Math.min(Math.floor(blue * factor), 255);
+  
+    // set the pixel values to the new brightness
+    data[i] = red;
+    data[i + 1] = green;
+    data[i + 2] = blue;
+  }
+  
+  // put the modified image data back onto the canvas
+  ctx.putImageData(imageData, 0, 0);
+  
+  // create a new image object with the modified image data
+  var newImage = new Image();
+  newImage.src = canvas.toDataURL();
+  
+  // return the new image object
+  return newImage;
+}
+
 
   
 function rgbToGrayscale(target) {
